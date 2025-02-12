@@ -96,7 +96,7 @@
 <div class="mx-auto flex w-full max-w-96 flex-col pb-6">
 	<div class="flex items-center justify-center py-6 lg:pt-9">
 		<button
-			class="flex items-center gap-2.5 p-4 text-[15px] font-bold"
+			class="flex cursor-pointer items-center gap-2.5 p-4 text-[15px] font-bold"
 			type="button"
 			onclick={downloadVCard}
 		>
