@@ -27,7 +27,7 @@
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 	 */
-	"vars": { "PUBLIC_HEAP_APP_ID": "382449309" }
+	"vars": { "PUBLIC_HEAP_APP_ID": "382449309" },
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
@@ -44,4 +44,10 @@
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+	"kv_namespaces": [
+		{
+			"binding": "LINK_PAGES",
+			"id": "c0c4b3d710924271823d137c50d33359"
+		}
+	]
 }

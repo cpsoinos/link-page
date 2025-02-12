@@ -1,93 +1,17 @@
-<script lang="ts" module>
-	interface ContactItem {
-		icon: string;
-		value: string;
-		href: string;
-		description?: string;
-	}
-</script>
-
 <script lang="ts">
+	import type { ContactItem, VCardLinkData } from '$lib/types';
 	import Icon from './icon.svelte';
 
-	const contacts: ContactItem[][] = [
-		[
-			{
-				icon: 'clarity:email-line',
-				value: 'SceneryDepartment@publictheater.org',
-				href: 'mailto:SceneryDepartment@publictheater.org',
-				description: 'Scenery'
-			},
-			{
-				icon: 'clarity:email-line',
-				value: 'PropsDepartment@publictheater.org',
-				href: 'mailto:PropsDepartment@publictheater.org',
-				description: 'Props'
-			},
-			{
-				icon: 'clarity:email-line',
-				value: 'LightingDepartment@publictheater.org',
-				href: 'mailto:LightingDepartment@publictheater.org',
-				description: 'Lighting'
-			},
-			{
-				icon: 'clarity:email-line',
-				value: 'AudioDepartment@publictheater.org',
-				href: 'mailto:AudioDepartment@publictheater.org',
-				description: 'Audio'
-			},
-			{
-				icon: 'clarity:email-line',
-				value: 'CostumesDepartment@publictheater.org',
-				href: 'mailto:CostumesDepartment@publictheater.org',
-				description: 'Costumes'
-			},
-			{
-				icon: 'clarity:email-line',
-				value: 'VideoDepartment@publictheater.org',
-				href: 'mailto:VideoDepartment@publictheater.org',
-				description: 'Video'
-			},
-			{
-				icon: 'clarity:email-line',
-				value: 'ProductionManagement@publictheater.org',
-				href: 'mailto:ProductionManagement@publictheater.org',
-				description: 'Production Management'
-			}
-		],
-		[
-			{
-				icon: 'mdi:web',
-				value: 'https://publictheater.org',
-				href: 'https://publictheater.org'
-			}
-		],
-		[
-			{
-				icon: 'basil:location-outline',
-				value: '425 Lafayette Street, New York, NY, USA',
-				href: 'https://www.google.com/maps/place/425+Lafayette+Street,+New+York,+NY,+USA',
-				description: 'Show on map'
-			}
-		],
-		[
-			{
-				icon: 'skill-icons:instagram',
-				value: 'Instagram',
-				href: 'https://www.instagram.com/publictheaterny',
-				description: '@publictheaterny'
-			}
-		]
-	];
+	const { contacts, vcard }: { contacts: ContactItem[][]; vcard: VCardLinkData } = $props();
 
 	const downloadVCard = () => {
-		fetch('/vcards/public-theater-production-department.vcf')
+		fetch(vcard.url)
 			.then((response) => response.blob())
 			.then((blob) => {
 				const url = window.URL.createObjectURL(blob);
 				const a = document.createElement('a');
 				a.href = url;
-				a.download = 'Public Theater Production.vcf';
+				a.download = vcard.filename;
 				a.click();
 			});
 	};
@@ -100,8 +24,8 @@
 			type="button"
 			onclick={downloadVCard}
 		>
-			<Icon icon="gravity-ui:person-plus" class="size-5" />
-			Add to Contacts
+			<Icon icon={vcard.icon} class="size-5" />
+			{vcard.cta}
 		</button>
 	</div>
 
@@ -121,9 +45,5 @@
 				{/each}
 			</div>
 		{/each}
-
-		<!-- <div class="flex flex-col gap-6">
-			<h2 class="text-center text-sm text-gray-700">Social</h2>
-		</div> -->
 	</div>
 </div>
