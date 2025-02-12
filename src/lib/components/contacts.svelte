@@ -1,33 +1,26 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import type { ContactItem, VCardLinkData } from '$lib/types';
 	import Icon from './icon.svelte';
 
 	const { contacts, vcard }: { contacts: ContactItem[][]; vcard: VCardLinkData } = $props();
-
-	const downloadVCard = () => {
-		fetch(vcard.url)
-			.then((response) => response.blob())
-			.then((blob) => {
-				const url = window.URL.createObjectURL(blob);
-				const a = document.createElement('a');
-				a.href = url;
-				a.download = vcard.filename;
-				a.click();
-			});
-	};
 </script>
 
 <div class="mx-auto flex w-full max-w-96 flex-col pb-6">
-	<div class="flex items-center justify-center py-6 lg:pt-9">
+	<form
+		method="POST"
+		action="?/downloadVCard"
+		use:enhance
+		class="flex items-center justify-center py-6 lg:pt-9"
+	>
 		<button
 			class="flex cursor-pointer items-center gap-2.5 p-4 text-[15px] font-bold"
-			type="button"
-			onclick={downloadVCard}
+			type="submit"
 		>
 			<Icon icon={vcard.icon} class="size-5" />
 			{vcard.cta}
 		</button>
-	</div>
+	</form>
 
 	<div class="flex flex-col" id="contacts">
 		{#each contacts as group}

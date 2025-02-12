@@ -32,6 +32,4 @@ export interface ContactItem {
 export interface VCardLinkData {
 	icon: string;
 	cta: string;
-	url: string;
-	filename: string;
 }

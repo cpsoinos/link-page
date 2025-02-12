@@ -1,9 +1,23 @@
 <script lang="ts">
 	import Header from '$lib/components/header.svelte';
 	import Contacts from '$lib/components/contacts.svelte';
+	import type { PageProps } from './$types';
 
-	const { data } = $props();
+	let { data, form }: PageProps = $props();
+
 	const { meta, headerData, contactData } = data;
+
+	$effect(() => {
+		if (form?.vcard) {
+			const blob = new Blob([form.vcard.content], { type: 'text/vcard' });
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = form.vcard.name;
+			a.click();
+			form = null;
+		}
+	});
 </script>
 
 <svelte:head>
