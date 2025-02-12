@@ -1,6 +1,14 @@
 import { loadIcons } from '@iconify/svelte';
 
-const ICONS = ['clarity:email-solid', 'basil:location-solid'];
+const ICONS = [
+	'clarity:email-solid',
+	'clarity:email-line',
+	'basil:location-solid',
+	'basil:location-outline',
+	'gravity-ui:person-plus',
+	'mdi:web',
+	'skill-icons:instagram'
+];
 
 export async function preloadIcons() {
 	try {

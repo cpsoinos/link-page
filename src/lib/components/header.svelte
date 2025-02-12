@@ -5,7 +5,7 @@
 		{
 			icon: 'clarity:email-solid',
 			label: 'Email',
-			href: '#email'
+			href: '#contacts'
 		},
 		{
 			icon: 'basil:location-solid',

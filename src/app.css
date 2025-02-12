@@ -1,5 +1,4 @@
 @import '@fontsource/lato/400.css';
-@import '@fontsource/lato/500.css';
 @import '@fontsource/lato/700.css';
 @import 'tailwindcss';
 
@@ -8,5 +7,5 @@
 }
 
 html {
-	@apply antialiased;
+	@apply antialiased motion-safe:scroll-smooth;
 }
