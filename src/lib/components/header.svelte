@@ -1,28 +1,23 @@
 <script lang="ts">
+	import type { ActionButton, Logo } from '$lib/types';
 	import Icon from './icon.svelte';
 
-	const actionButtons = [
-		{
-			icon: 'clarity:email-solid',
-			label: 'Email',
-			href: '#contacts'
-		},
-		{
-			icon: 'basil:location-solid',
-			label: 'Location',
-			href: 'https://www.google.com/maps/place/425+Lafayette+Street,+New+York,+NY,+USA'
-		}
-	];
+	const {
+		logo,
+		title,
+		subtitle,
+		actionButtons
+	}: { actionButtons: ActionButton[]; logo: Logo; title: string; subtitle: string } = $props();
 </script>
 
 <div class="mx-auto flex w-full flex-col items-center gap-5 bg-black pt-8 pb-5 text-white lg:pt-12">
-	<div class="flex size-25 items-center justify-center bg-white">
-		<img src="/images/logo-public-theater.webp" alt="Public Theater Logo" class="w-20" />
+	<div class="flex size-25 items-center justify-center rounded-md bg-white">
+		<img src={logo.src} alt={logo.alt} class="size-20 object-contain" width="80" height="80" />
 	</div>
 
 	<div class="flex w-full max-w-96 flex-col items-center gap-2 px-4">
-		<h1 class="text-2xl font-bold">Production Department</h1>
-		<p class="text-sm">@ The Public Theater</p>
+		<h1 class="text-2xl font-bold">{title}</h1>
+		<p class="text-sm">{subtitle}</p>
 	</div>
 
 	<div class="grid grid-flow-col items-start gap-1">
