@@ -21,6 +21,7 @@
 </script>
 
 <svelte:head>
+	<link rel="icon" href={meta.favicon} />
 	<title>{meta.title}</title>
 	<meta
 		name="description"

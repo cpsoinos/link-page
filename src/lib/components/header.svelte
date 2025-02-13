@@ -11,8 +11,8 @@
 </script>
 
 <div class="mx-auto flex w-full flex-col items-center gap-5 bg-black pt-8 pb-5 text-white lg:pt-12">
-	<div class="flex size-25 items-center justify-center bg-white">
-		<img src={logo.src} alt={logo.alt} class="w-20" />
+	<div class="flex size-25 items-center justify-center rounded-md bg-white">
+		<img src={logo.src} alt={logo.alt} class="size-20 object-contain" width="80" height="80" />
 	</div>
 
 	<div class="flex w-full max-w-96 flex-col items-center gap-2 px-4">
